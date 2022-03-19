@@ -1,3 +1,1 @@
-# HSE Math Methods Labs Year 2
-
-Shadrunov Aleksey
+# Lab 1 Substitution Cipher
