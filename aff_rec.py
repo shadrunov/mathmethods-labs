@@ -83,7 +83,6 @@ def user_input():
 
     return (sequence, key_1, key_2)
 
-    # TODO check len of sequence > 2
 
 def decrypt(sequence: str, key_1: Tuple[int, int], key_2: Tuple[int, int], LANG: Lang = LANG) -> str:
     alpha_1, beta_1 = key_1
