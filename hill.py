@@ -90,6 +90,9 @@ class Cryptosystem:
         for i in range(0, n):
             for j in range(0, n):
                 adj[i][j] = ((-1) ** (i + j) * int(round(np.linalg.det(self.minor(A, j, i))))) % p
+                # print(i, j, adj[i][j])
+
+        # print(pow(int(round(np.linalg.det(A))), -1, p) * adj)        
         return (pow(int(round(np.linalg.det(A))), -1, p) * adj) % p
 
     def minor(self, A, i, j):  # Return matrix A with the ith row and jth column deleted
@@ -106,11 +109,12 @@ class Cryptosystem:
                 minor[minor_row][minor_col] = A[row][col]
                 col = col + 1
             row = row + 1
+            # print('minor', minor)
         return minor
 
     def decrypt(self, text: str) -> str:
         sequence = [self.lang.alphabet.find(i) for i in text]
-
+        # print('inverted matrix: ', self.inverse_matrix(self.key, self.lang.modulo))
         res = []
         for i in range(0, len(sequence), self.n):
             block = sequence[i : i + self.n]
@@ -135,6 +139,7 @@ class Cryptosystem:
             block = sequence[i : i + self.n]
             res_block = np.matmul(self.key, block) % self.lang.modulo
             res.extend(res_block)
+            # print(' res ', res_block)
             # print(res)
 
         return "".join([self.lang.alphabet[i] for i in res])
